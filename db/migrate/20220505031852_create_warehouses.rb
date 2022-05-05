@@ -5,6 +5,8 @@ class CreateWarehouses < ActiveRecord::Migration[7.0]
       t.string :code
       t.string :city
       t.integer :area
+      t.string :adress
+      t.string :zip_code
 
       t.timestamps
     end

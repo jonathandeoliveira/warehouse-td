@@ -4,7 +4,7 @@ describe 'Usuário vê detalhes de um galpão' do
   it 'e vê informações adicionais' do
     #arrange
     w = Warehouse.new(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
-                    adress: 'Avenida do aeroporto, 1000', cep: '15000-000',
+                    adress: 'Avenida do aeroporto, 1000', zip_code: '15000-000',
                     description:'Galpão destinado para cargas internacionais')
     w.save()
     #act
@@ -23,7 +23,7 @@ describe 'Usuário vê detalhes de um galpão' do
   it 'e volta para a tela inicial' do
     #arrange
     w = Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
-      adress: 'Avenida do aeroporto, 1000', cep: '15000-000',
+      adress: 'Avenida do aeroporto, 1000', zip_code: '15000-000',
       description:'Galpão destinado para cargas internacionais')
     #act
     visit '/'
