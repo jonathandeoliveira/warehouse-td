@@ -1,0 +1,61 @@
+
+* Decidi trazer as anotações dos meus "post-it's do entendimento" para um 
+arquivo txt porque meu monitor já estava todo cheio deles e estava ficando sem 
+espaço, se você que estiver lendo tiver algo para acrescentar ou mesmo me 
+corrigir, sinta-se à vontade para me mandar uma mensagem no slack ou no discord*
+
+
+----------------------------------//-------------------------------------
+
+Models -> vão possuir as regres de  validação da nossa aplicação
+
+----------------------------------//-------------------------------------
+Rotas HTTP-> todas as rotas que não são do tipo GET, não possuem um arquivo HTML
+ Elas apenas realizam o processamento da tarefa e nos redirecionam para algum
+ lugar.
+----------------------------------//-------------------------------------
+
+
+
+
+- Testes de sistema -> são mais abrangentes e podemos validar o uso de toda a 
+aplicação por um usuário final, independente da linguagem ou framework utilizada,
+se o código está dentro de um model,view ou controller
+ * São mais completos, simulando passo a passo um usuário comum,
+  portanto podem ser mais demorados
+
+----------------------------------//-------------------------------------
+
+- Testes unitários -> São mais específicos, usados para validar um método 
+específico e nos ajudam a cobrir todo o código sem prejudicar performance,
+podemos testar uma action em um controller ou uma view de forma isolada
+ * São pequenos e específicos, portanto são mais rápidos
+
+testes com métodos de classe utilizamos . na frente do método da classe.
+exemplo: '.all'
+testes com métodos de instância utilizamos # na frente do método da instância.
+ exemplo: '#valid?'
+
+----------------------------------//-------------------------------------
+
+Métodos de classe:são chamados assim pois os atuam de forma "abrangente", quando 
+manipulamos toda a classe com um comando, exemplo:
+Warehouse.all ->  é um método de classe pois ela nos responde diretamente
+
+
+Método de instância: São chamados assim pois agimos diretamente em um objetivo 
+de uma determinada classe, exemplo:
+
+w = Warehouse.find(1)
+w.valid? -> o valid? é um método de instância pois age diretamente no objeto 
+da classe
+
+Analogia que me ajudou a fixar: 
+Métodos de classe: são como mães, que gerenciam sobre seus filhotes 
+Métodos de instância:são os filhotes que nos respondem em pessoa
+e podemos interagir diretamente com eles
+----------------------------------//-------------------------------------
+
+
+
+
