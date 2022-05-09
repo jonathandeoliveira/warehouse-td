@@ -59,4 +59,47 @@ describe 'Usuário cadastra um galpão' do
     expect(page).to have_content "Área não pode ficar em branco"
   end
 
+  it 'Com nome e código repetidos' do
+    #arrange
+    warehouse = Warehouse.create(name: 'Zona Leste', code: 'SPL', city: 'Itaquera', area: 100_000,
+                                adress: 'Rua da Arena Corinthians, 157', zip_code: '12345-678',
+                                description:'Galpão perigoso')
+    #Act
+    visit root_path
+    click_on 'Cadastrar novo galpão'
+    fill_in 'Nome:', with: 'Zona Leste'
+    fill_in 'Descrição:', with: 'Galpão perigoso'
+    fill_in 'Código:', with: 'SPL'
+    fill_in 'Endereço:', with: 'Rua da Arena Corinthians, 157'
+    fill_in 'Cidade:', with:  'Itaquera'
+    fill_in 'CEP:', with: '12345-678'
+    fill_in'Área:', with: '100000'
+    click_on 'Cadastrar'
+
+    #assert
+    expect(page).to have_content "Nome já está em uso"
+    expect(page).to have_content "Código já está em uso"
+  end
+
+  it 'Com código fora do formato' do
+    #Arrange
+    #Act
+    visit root_path
+    click_on 'Cadastrar novo galpão'
+    fill_in 'Nome:', with: 'Zona Leste'
+    fill_in 'Descrição:', with: 'Galpão perigoso'
+    fill_in 'Código:', with: 'SPL'
+    fill_in 'Endereço:', with: 'Rua da Arena Corinthians, 157'
+    fill_in 'Cidade:', with:  'Itaquera'
+    fill_in 'CEP:', with: '12345-5555'
+    fill_in'Área:', with: '100000'
+    click_on 'Cadastrar'
+
+    #assert
+    expect(page).to have_content 'CEP não é válido'
+
+  end
+
+
+
 end

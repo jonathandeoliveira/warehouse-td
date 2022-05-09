@@ -85,11 +85,11 @@ RSpec.describe Warehouse, type: :model do
     it 'falso quando um código já está em uso' do
       #arrange
       first_warehouse = Warehouse.create(name: 'Zona Leste', code: 'SPL', city: 'Itaquera', area: 100_000,
-                                        adress: 'Rua da Arena Corinthians', zip_code: '12345-678',
+                                        adress: 'Rua da Arena Corinthians, 157', zip_code: '12345-678',
                                         description:'Galpão perigoso')
 
       second_warehouse = Warehouse.new(name: 'Zona Sul', code: 'SPL', city: 'Jabaquara', area: 100_000,
-                                  adress: 'rua dois', zip_code: '87654-321',
+                                  adress: 'rua dois, 2', zip_code: '87654-321',
                                   description:'Galpão feio')
       #act
         result = second_warehouse.valid?
@@ -97,6 +97,17 @@ RSpec.describe Warehouse, type: :model do
       expect(result).to eq false
     end
 
+    it 'falso quando o cep está no formato inválido' do
+      #Arrange
+      warehouse = Warehouse.new(name: '', code: 'RIO', city: 'Rio', area: 100_000,
+      adress: 'endereço', zip_code: '12345-68',
+      description:'')
+      #Act
+      result = warehouse.valid?
+      #Assert
+      expect(result).to eq false
+    end
+    
 
   end
 end
