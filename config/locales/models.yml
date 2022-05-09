@@ -1,0 +1,14 @@
+pt-br:
+  activerecord:
+    models: 
+      warehouse: 'Galpão' # coloque aqui o nome do seu model
+    attributes: 
+      warehouse: #coloque aqui o model novamente
+        name: 'Nome' #a partir daqui coloque os atributos do model
+        description: 'Descrição'
+        code: 'Código'
+        adress: 'Endereço'
+        city: 'Cidade'
+        zip_code: 'CEP'
+        area: 'Área'
+

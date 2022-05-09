@@ -56,6 +56,15 @@ Métodos de instância:são os filhotes que nos respondem em pessoa
 e podemos interagir diretamente com eles
 ----------------------------------//-------------------------------------
 
+Internacionalização (i18n) -> Um recurso de configuração da aplicação,
+que permite que uma aplicação seja escrita em vários idiomas, pode conter regras
+ de localização(L10n, localização no sentido de formato de data, moeda, entre
+outros). É um componente comum em frameworks web atuais. 
+
+-Em rails sempre utilizamos, mesmo que nosso site suporte apenas um idioma 
+pois teremos recursos de outras gems que nos dão facilidade pra tratar erros e
+ exibir mensagens, nos "poupando" de escrever códigos, nos dando um pouco mais
+ de eficiência.
 
 
 

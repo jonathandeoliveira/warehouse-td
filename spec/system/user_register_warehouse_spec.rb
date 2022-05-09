@@ -30,7 +30,7 @@ describe 'Usuário cadastra um galpão' do
     fill_in 'Código:', with: 'RIO'
     fill_in 'Endereço:', with: 'Avenida Porto Rio de janeiro, 2000'
     fill_in 'Cidade:', with:  'Rio de Janeiro'
-    fill_in 'CEP:', with: '20200-00'
+    fill_in 'CEP:', with: '20200-000'
     fill_in'Área:', with: '32000'
     click_on 'Cadastrar'
 
@@ -54,10 +54,9 @@ describe 'Usuário cadastra um galpão' do
     click_on 'Cadastrar'
 
     #assert
-    expect(page).to have_content 'Erro! Não foi possível cadastrar um novo galpão'
-
-1
-
+    expect(page).to have_content "Nome não pode ficar em branco"
+    expect(page).to have_content "Descrição não pode ficar em branco"
+    expect(page).to have_content "Área não pode ficar em branco"
   end
 
 end
