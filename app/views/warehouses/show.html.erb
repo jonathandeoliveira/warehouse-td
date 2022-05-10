@@ -4,7 +4,7 @@
 <dl>
 
   <dd> 
-  <strong>Galpão:</strong><%= @warehouse.code %><br/>
+  <strong>Código:</strong><%= @warehouse.code %><br/>
   </dd>
 
   <dd> 
@@ -22,5 +22,6 @@
   <strong>Endereço:</strong><%= @warehouse.adress %> <strong> CEP:</strong><%= @warehouse.zip_code %> <br/>
   </dd>
 
-<%= link_to('Voltar', root_path)%>
+<%= link_to('Voltar', root_path)%> <br/>
+<%= link_to('Editar', edit_warehouse_path(@warehouse.id))%>
 </dl>
