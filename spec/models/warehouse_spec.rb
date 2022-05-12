@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Warehouse, type: :model do
   describe '#valid?' do
-    context '' do 
+    context 'cadastro de novo galpão' do 
       it 'falso quando o nome está vazio' do
       #Arrange
         warehouse = Warehouse.new(name: '', code: 'RIO', city: 'Rio', area: 100_000,
@@ -72,7 +72,7 @@ RSpec.describe Warehouse, type: :model do
 
       it 'falso quando a descrição está vazia' do
       #Arrange
-        warehouse = Warehouse.new(name: '', code: 'RIO', city: 'Rio', area: 100_000,
+        warehouse = Warehouse.new(name: 'Rio', code: 'RIO', city: 'Rio', area: 100_000,
           adress: 'endereço', zip_code: '12345-678',
           description:'')
       #Act
@@ -99,9 +99,9 @@ RSpec.describe Warehouse, type: :model do
 
     it 'falso quando o cep está no formato inválido' do
       #Arrange
-      warehouse = Warehouse.new(name: '', code: 'RIO', city: 'Rio', area: 100_000,
+      warehouse = Warehouse.new(name: 'Rio', code: 'RIO', city: 'Rio', area: 100_000,
       adress: 'endereço', zip_code: '12345-68',
-      description:'')
+      description:'Galpão')
       #Act
       result = warehouse.valid?
       #Assert

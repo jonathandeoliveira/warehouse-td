@@ -1,0 +1,25 @@
+<h1> Detalhes sobre o fornecedor:<%= @supplier.brand_name%> </h1>
+<h2> <%= @supplier.company_name  %> </h2>
+
+<dl>
+  <dt><strong>CPNJ:</strong></dt>
+    <dd><%= @supplier.company_register %><br/></dd>
+
+  <dt><strong>Endereço:</strong></dt>
+    <dd><%= @supplier.adress %> - <%= @supplier.city %> - <%= @supplier.state %> <br/></dd>
+
+  <dt><strong>E-mail:</strong></dt>
+    <dd><%= @supplier.email %> <br/></dd>
+
+  <dt><strong>Telefone:</strong></dt>
+    <dd><%= @supplier.phone_number %> <br/></dd>
+</dl>
+
+<div>
+<%= link_to('Editar', edit_supplier_path(@supplier.id))%>
+</div>
+
+<div>
+<%= link_to('Voltar', suppliers_path)%> <br/>
+</div>
+
