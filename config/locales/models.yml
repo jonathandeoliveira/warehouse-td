@@ -2,6 +2,7 @@ pt-br:
   activerecord:
     models: 
       warehouse: 'Galpão' # coloque aqui o nome do seu model
+      supplier: 'Fornecedor'
     attributes: 
       warehouse: #coloque aqui o model novamente
         name: 'Nome' #a partir daqui coloque os atributos do model
@@ -11,4 +12,14 @@ pt-br:
         city: 'Cidade'
         zip_code: 'CEP'
         area: 'Área'
+      supplier: 
+        company_name: 'Razão Social'
+        company_register: 'CPNJ'
+        brand_name: 'Nome Fantasia'
+        adress: 'Endereço'
+        city: 'Cidade'
+        state: 'Estado'
+        email: 'E-mail'
+        phone_number: 'Telefone'
+
 
