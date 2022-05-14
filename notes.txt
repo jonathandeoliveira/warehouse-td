@@ -65,6 +65,8 @@ outros). É um componente comum em frameworks web atuais.
 pois teremos recursos de outras gems que nos dão facilidade pra tratar erros e
  exibir mensagens, nos "poupando" de escrever códigos, nos dando um pouco mais
  de eficiência.
+----------------------------------//-------------------------------------
 
-
-
+Associações (ou composições) - Quando um objeto pode pertencer a outro, exemplo:
+ 
+Um autor pode ter diversos livros, mas cada livro só tem um autor
