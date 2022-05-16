@@ -55,9 +55,9 @@ describe 'Usuário cadastra um modelo de produto' do
     fill_in 'Nome', with: ''
     fill_in 'Peso', with: ''
     fill_in 'SKU', with: ''
-    fill_in 'Altura', with: 20
-    fill_in 'Largura', with: 30
-    fill_in 'Profundidade', with: 25
+    fill_in 'Altura', with: ''
+    fill_in 'Largura', with: ''
+    fill_in 'Profundidade', with: ''
     select 'Stark Industries', from: 'Fornecedor'
     click_on 'Cadastrar'
     #assert
