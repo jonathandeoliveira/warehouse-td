@@ -13,14 +13,21 @@
     <header>
       <h1> Galpões & Estoque </h1>
       <nav>
-        <%= link_to 'Home', root_path %> <br/>
-        <%= link_to 'Fornecedores', suppliers_path %> <br/>
-        <%= link_to 'Lista de Produtos', product_models_path %> <br/>
+        <%= link_to 'Home', root_path %> | 
+        <% if user_signed_in? %>
+          <%= current_user.email %>
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Entrar',  new_user_session_path %> <br/>
+        <% end %>
+        <%= link_to 'Fornecedores', suppliers_path %> |
+        <%= link_to 'Lista de Produtos', product_models_path %>
       </nav>
     </header>
     <main>
   <div style = "margin:10px 0px" >
-    <%= flash[:notice] %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   </div>
     <%= yield %>
     </main>

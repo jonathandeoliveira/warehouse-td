@@ -11,7 +11,7 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save
-    redirect_to root_path, notice: 'Galpão cadastrado com sucesso!'
+      redirect_to root_path, notice: 'Galpão cadastrado com sucesso!'
     else
       flash.now[:notice] = 'Erro! Não foi possível cadastrar um novo galpão'
       render 'new' 
@@ -19,6 +19,7 @@ class WarehousesController < ApplicationController
   end
 
   def edit
+    @warehouse = Warehouse.find(params[:id])
   end
 
   def update
