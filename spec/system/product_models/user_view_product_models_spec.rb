@@ -1,9 +1,23 @@
 require 'rails_helper'
 
 describe 'Vê a lista de produtos' do
-  it 'através do menu' do
+
+  it 'se estiver autenticado' do
     #arrange
     #act
+    visit root_path
+    within('nav') do
+      click_on 'Lista de Produtos'
+    end
+    #assert
+    expect(current_path).to eq new_user_session_path
+  end
+
+  it 'através do menu' do
+    #arrange
+    user = User.create!(name: 'Jonathan', email:'jonathan@email.com', password: 'password')
+    #act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Lista de Produtos'
@@ -14,6 +28,7 @@ describe 'Vê a lista de produtos' do
 
   it 'com sucesso' do
     #arrange
+    user = User.create!(name: 'Jonathan', email:'jonathan@email.com', password: 'password')
     fornecedor = Supplier.create!(company_name:'Wayne Enterprises Inc', 
                                   company_register:'70.190.836/0001-81',
                                   brand_name:'WayneCorp',
@@ -26,6 +41,7 @@ describe 'Vê a lista de produtos' do
     ProductModel.create!(name:'Grapplin Gun', weight: 5000, width: 30, height:30, 
                         depth:20, sku:'B4TC0RD4', supplier: fornecedor)
     #act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Lista de Produtos'
@@ -40,8 +56,9 @@ describe 'Vê a lista de produtos' do
 
   it 'e não existem produtos cadastrados' do
     #arrange
-
+    user = User.create!(name: 'Jonathan', email:'jonathan@email.com', password: 'password')
     #act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Lista de Produtos'

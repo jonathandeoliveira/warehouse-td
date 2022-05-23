@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra um modelo de produto' do
   it 'com sucesso' do
     #arrange
+    user = User.create!(name: 'Jonathan', email:'jonathan@email.com', password: 'password')
     supplier1= Supplier.create!(company_name:'Stark Technology Inc', 
                         company_register:'00.178.762/0001-82',
                         brand_name:'Stark Industries', adress:'Rua Vilela, 663',
@@ -17,6 +18,7 @@ describe 'Usuário cadastra um modelo de produto' do
                           email:'contato@bwayne.com', 
                           phone_number:'2198405-5854')
     #act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Lista de Produtos'
@@ -41,12 +43,14 @@ describe 'Usuário cadastra um modelo de produto' do
 
   it 'deve preencher todos os campos' do
     #arrange
+    user = User.create!(name: 'Jonathan', email:'jonathan@email.com', password: 'password')
     supplier= Supplier.create!(company_name:'Stark Technology Inc', 
                         company_register:'00.178.762/0001-82',
                         brand_name:'Stark Industries', adress:'Rua Vilela, 663',
                         city:'Tatuapé', state:'SP', 
                         email:'contato@tstark.com', phone_number:'6799672-3406')
     #act
+    login_as(user)
     visit root_path
     within('nav') do
       click_on 'Lista de Produtos'

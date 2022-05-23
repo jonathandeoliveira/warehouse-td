@@ -18,7 +18,7 @@ describe 'Usuário faz o login' do
     expect(page).to have_content 'Login efetuado com sucesso'
     within('nav') do
       expect(page).to have_content 'email@email.com'
-      expect(page).not_to have_link 'Login'
+      expect(page).not_to have_link 'Entrar'
       expect(page).to have_button 'Sair'
     end
   end

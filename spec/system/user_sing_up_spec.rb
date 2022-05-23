@@ -14,7 +14,6 @@ describe 'Usuário se autentica' do
     click_on 'Criar conta'
     #assert
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
-    expect(page).to have_content 'Olá Pedro.'
     expect(page).to have_content 'pedro@email.com'
     expect(page).to have_button 'Sair'
     user = User.last
