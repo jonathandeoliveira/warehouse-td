@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Warehouse, type: :model do
   describe '#valid?' do
+
     context 'cadastro de novo galpão' do 
       it 'falso quando o nome está vazio' do
       #Arrange
@@ -110,4 +111,19 @@ RSpec.describe Warehouse, type: :model do
     
 
   end
+
+  describe '#full_description' do
+    it 'exibe o nome e o código' do
+      #arrange
+      w = Warehouse.new(name: 'Palmas', code: 'TOC', city: 'Palmas', area: 100_000,
+        adress: 'endereço', zip_code: '12345-678',
+        description:'Galpão')
+      #act
+      result = w.full_description()
+      #assert
+      expect(result).to eq('TOC - Palmas')
+    end
+
+  end
+
 end

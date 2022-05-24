@@ -1,0 +1,14 @@
+pt-br:
+  activerecord:
+    models: 
+      order: 'Pedido' # coloque aqui o nome do seu model
+    attributes: 
+      order: #coloque aqui o model novamente
+        name: 'Nome' #a partir daqui coloque os atributos do model
+        warehouse_id: 'Galpão destino'
+        warehouse: 'Galpão destino'
+        supplier_id: 'Fornecedor'
+        supplier: 'Fornecedor'
+        user_id: 'Usuário responsável'
+        user: 'Usuário responsável'
+        deadline_delivery: 'Data prevista para entrega'
