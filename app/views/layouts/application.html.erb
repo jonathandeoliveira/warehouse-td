@@ -14,8 +14,14 @@
       <h1> Galpões & Estoque </h1>
       <nav>
         <%= link_to 'Home', root_path %> | 
+         <%= link_to 'Meus Pedidos', orders_path %>
         <% if user_signed_in? %>
           <%= current_user.description %> |
+            <%=form_with(url: search_orders_path, method: :get) do |f| %>
+            <%= f.label :query, 'Rastrear pedido' %>:
+            <%= f.text_field :query%>
+            <%= f.submit 'Buscar' %>
+    <% end%>
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %> 
         <% else %>
           <%= link_to 'Entrar',  new_user_session_path %> | <br/>

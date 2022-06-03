@@ -1,7 +1,9 @@
 pt-br:
   activerecord:
     models: 
-      order: 'Pedido' # coloque aqui o nome do seu model
+      order:
+        one: 'Pedido'
+        other: 'Pedidos'
     attributes: 
       order: #coloque aqui o model novamente
         name: 'Nome' #a partir daqui coloque os atributos do model

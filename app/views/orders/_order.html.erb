@@ -1,0 +1,12 @@
+  <dl>
+    <dt><%= Order.human_attribute_name(:code) %></dt>
+    <dd><%= order.code %></dd>
+    <dt><strong> <%= Order.human_attribute_name(:warehouse_id)%>: </strong> </dt>
+    <dd><%= order.warehouse.full_description %>  </dd>
+    <dt><strong> <%= Order.human_attribute_name(:supplier_id)%>: </strong> </dt>
+    <dd><%= order.supplier.brand_name  %></dd>
+    <dt><strong><%= Order.human_attribute_name(:user_id)%>: </strong> </dt>
+    <dd><%= order.user.name  %>  </dd>
+    <dt><strong><%= Order.human_attribute_name(:deadline_delivery)%>: </strong> </dt>
+    <dd> <%= order.deadline_delivery  %> </dd>
+  </dl>
