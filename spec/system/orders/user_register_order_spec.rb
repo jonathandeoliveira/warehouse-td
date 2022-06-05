@@ -38,18 +38,22 @@ describe 'Usuário cadastra um pedido' do
     visit root_path
     click_on 'Registrar pedido'
     select  'SPL - Zona Leste', from: 'Galpão destino'
-    select  supplier.company_name, from: 'Fornecedor'
+    select  supplier.brand_name, from: 'Fornecedor'
     fill_in 'Data prevista para entrega', with: '08/06/2022'
-    click_on 'Criar pedido'
+    click_on 'Gravar'
     #assert
       expect(page).to have_content 'Pedido registrado com sucesso'
       expect(page).to have_content 'Pedido 8DIGITOS'
       expect(page).to have_content 'Galpão destino: SPL - Zona Leste'
-      expect(page).to have_content 'Fornecedor: Oscorp Industries'
+      expect(page).to have_content 'Fornecedor: Oscorp'
+      expect(page).to have_content 'Situação: Pendente'
       expect(page).to have_content 'Usuário responsável: Jonathan - jonathan@email.com'
       expect(page).to have_content 'Data prevista para entrega: 08/06/2022'
       expect(page).not_to have_content 'Aeroporto SP'
       expect(page).not_to have_content 'Wayne Enterprises Inc'
+
+
+
   end
   it 'e deve preencher a data de entrega corretamente' do
     #arrange
@@ -69,9 +73,9 @@ describe 'Usuário cadastra um pedido' do
     visit root_path
     click_on 'Registrar pedido'
     select  'SPL - Zona Leste', from: 'Galpão destino'
-    select  supplier.company_name, from: 'Fornecedor'
+    select  supplier.brand_name, from: 'Fornecedor'
     fill_in 'Data prevista para entrega', with: 1.day.ago
-    click_on 'Criar pedido'
+    click_on 'Gravar'
     #assert
     expect(page).to have_content 'Não foi possível criar a ordem de serviço'
     expect(page).to have_content 'Data prevista para entrega deve ser futura'

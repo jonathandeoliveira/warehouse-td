@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_order_and_check_user, only: [:show,:edit,:update, :delivered, :canceled]
 
   def index
     @orders = current_user.orders
@@ -26,11 +27,43 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
   end
 
   def search
     @code = params["query"]
     @orders = Order.where("code LIKE ?", "%#{@code}%")
   end
+
+  def edit
+      @warehouses = Warehouse.all
+      @suppliers = Supplier.all
+  end
+
+  def update
+    order_params = params.require(:order).permit(:warehouse_id, :supplier_id, :deadline_delivery)
+    @order.update(order_params)
+    redirect_to @order, notice: 'Pedido atualizado com sucesso'
+  end
+
+  def delivered
+    @order.delivered!
+    redirect_to @order
+  end
+
+  def canceled
+    @order.canceled!
+    redirect_to @order
+  end
+
+
+  private
+
+  def set_order_and_check_user
+    @order = Order.find(params[:id])
+    if @order.user != current_user
+      return redirect_to root_path,notice: 'Erro! Página não encontrada'
+    end
+  end
+
+
 end

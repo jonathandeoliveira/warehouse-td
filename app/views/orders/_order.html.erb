@@ -1,6 +1,6 @@
   <dl>
     <dt><%= Order.human_attribute_name(:code) %></dt>
-    <dd><%= order.code %></dd>
+    <dd><%= link_to order.code, order %></dd>
     <dt><strong> <%= Order.human_attribute_name(:warehouse_id)%>: </strong> </dt>
     <dd><%= order.warehouse.full_description %>  </dd>
     <dt><strong> <%= Order.human_attribute_name(:supplier_id)%>: </strong> </dt>
@@ -9,4 +9,6 @@
     <dd><%= order.user.name  %>  </dd>
     <dt><strong><%= Order.human_attribute_name(:deadline_delivery)%>: </strong> </dt>
     <dd> <%= order.deadline_delivery  %> </dd>
+     <dt><strong><%= Order.human_attribute_name(:status)%>: </strong> </dt>
+    <dd> <%= I18n.t(order.status)  %> </dd>
   </dl>
