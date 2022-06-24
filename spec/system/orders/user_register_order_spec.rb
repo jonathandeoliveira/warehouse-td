@@ -39,7 +39,7 @@ describe 'Usuário cadastra um pedido' do
     click_on 'Registrar pedido'
     select  'SPL - Zona Leste', from: 'Galpão destino'
     select  supplier.brand_name, from: 'Fornecedor'
-    fill_in 'Data prevista para entrega', with: '08/06/2022'
+    fill_in 'Data prevista para entrega', with: 1.day.from_now
     click_on 'Gravar'
     #assert
       expect(page).to have_content 'Pedido registrado com sucesso'
@@ -48,7 +48,7 @@ describe 'Usuário cadastra um pedido' do
       expect(page).to have_content 'Fornecedor: Oscorp'
       expect(page).to have_content 'Situação: Pendente'
       expect(page).to have_content 'Usuário responsável: Jonathan - jonathan@email.com'
-      expect(page).to have_content 'Data prevista para entrega: 08/06/2022'
+      expect(page).to have_content "Data prevista para entrega: #{I18n.localize(Order.last.deadline_delivery)}"
       expect(page).not_to have_content 'Aeroporto SP'
       expect(page).not_to have_content 'Wayne Enterprises Inc'
 

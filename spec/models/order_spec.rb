@@ -81,7 +81,7 @@ RSpec.describe Order, type: :model do
                                 city:'Tatuapé', state:'SP', 
                                 email:'contato@tstark.com', phone_number:'6799672-3406')
       order = Order.new(user: user, warehouse: warehouse, 
-                        supplier: supplier, deadline_delivery:'2022-06-08')
+                        supplier: supplier, deadline_delivery:1.day.from_now)
       #act
       order.save!
       result = order.code
@@ -105,9 +105,9 @@ RSpec.describe Order, type: :model do
                                 city:'Tatuapé', state:'SP', 
                                 email:'contato@tstark.com', phone_number:'6799672-3406')
       order1 = Order.create!(user: user, warehouse: warehouse, 
-                        supplier: supplier, deadline_delivery:'2022-06-08')
+                        supplier: supplier, deadline_delivery:1.day.from_now)
       order2 = Order.new(user: user, warehouse: warehouse, 
-                          supplier: supplier, deadline_delivery:'2022-09-20')
+                          supplier: supplier, deadline_delivery:1.day.from_now)
       #act
       order2.save!
       #assert
