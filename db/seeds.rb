@@ -5,15 +5,15 @@ user3 = User.create!(name: 'Alexander', email: 'luthor@lexcorp.com', password:'p
 user4 = User.create!(name: 'Tony', email: 'tony@stark.com', password:'password')
 
 #Warehouses
-gru =Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
+gru = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
                 adress: 'Avenida do aeroporto, 1000', zip_code: '15000-000',
                 description:'Galpão destinado para cargas internacionais')
 
-spl =Warehouse.create!(name: 'Zona Leste', code: 'SPL', city: 'Itaquera', area: 100_000,
+spl = Warehouse.create!(name: 'Zona Leste', code: 'SPL', city: 'Itaquera', area: 100_000,
                 adress: 'Rua da Arena Corinthians, 157', zip_code: '12345-678',
                 description:'Galpão perigoso')
 
-sps =Warehouse.create!(name: 'Zona Sul', code: 'SPS', city: 'Jabaquara', area: 100_000,
+sps = Warehouse.create!(name: 'Zona Sul', code: 'SPS', city: 'Jabaquara', area: 100_000,
                   adress: 'rua dois, 2', zip_code: '87654-321',
                   description:'Galpão feio')
 
