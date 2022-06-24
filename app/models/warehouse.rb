@@ -3,7 +3,8 @@ class Warehouse < ApplicationRecord
   validates :name, :code, uniqueness: true
   validates :code, length: {is: 3}
   validates :zip_code, format: { with: /\A\d{5}-\d{3}\z/}
-
+  
+  has_many :stock_products
 
 def full_description
   "#{code} - #{name}"

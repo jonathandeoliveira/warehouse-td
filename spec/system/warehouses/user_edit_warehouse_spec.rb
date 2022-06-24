@@ -37,8 +37,8 @@ describe 'Usuário edita um galpão' do
 
     #assert
     expect(page).to have_content 'Galpão atualizado com sucesso'
-    expect(page).to have_content 'Código:ABC'
-    expect(page).to have_content 'Área:80000 m²'
+    expect(page).to have_content 'Código: ABC'
+    expect(page).to have_content 'Área: 80000 m²'
     expect(page).to have_content 'CEP:09030-210'
   end
 
