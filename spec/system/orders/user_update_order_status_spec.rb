@@ -13,7 +13,14 @@ describe 'Usuário informa novo status de pedido' do
                               brand_name:'Stark Industries', adress:'Rua Vilela, 663',
                               city:'Tatuapé', state:'SP', 
                               email:'contato@tstark.com', phone_number:'6799672-3406')
+
+    product = ProductModel.create!(name:'Ark Reactor', weight: 1000, width: 15, height:4, 
+                        depth:6, sku:'R34T0R-4RK', supplier: supplier)
+
     order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, deadline_delivery:1.day.from_now, status: :pending)
+
+    order_item = OrderItem.create!(product_model: product, order: order, quantity: 10)
+
     #act
     login_as(user)
     visit root_path
@@ -24,8 +31,11 @@ describe 'Usuário informa novo status de pedido' do
     expect(current_path).to eq order_path(order.id)
     expect(page).to have_content 'Situação: Entregue'
     expect(page).not_to have_button 'Marcar como cancelado'
-
-  end
+    expect(page).not_to have_button 'Marcar como entregue'
+    expect(StockProduct.count).to eq 10
+    estoque = StockProduct.where(product_model:product, warehouse:warehouse).count
+    expect(estoque).to eq 10
+    end
 
   it 'e pedido foi cancelado' do
     #arrange
@@ -39,7 +49,15 @@ describe 'Usuário informa novo status de pedido' do
                               brand_name:'Stark Industries', adress:'Rua Vilela, 663',
                               city:'Tatuapé', state:'SP', 
                               email:'contato@tstark.com', phone_number:'6799672-3406')
+
+    product = ProductModel.create!(name:'Ark Reactor', weight: 1000, width: 15, height:4, 
+                        depth:6, sku:'R34T0R-4RK', supplier: supplier)
+
+                              
     order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, deadline_delivery:1.day.from_now, status: :pending)
+
+    order_item = OrderItem.create!(product_model: product, order: order, quantity: 10)
+
     #act
     login_as(user)
     visit root_path
@@ -49,7 +67,7 @@ describe 'Usuário informa novo status de pedido' do
     #assert
     expect(current_path).to eq order_path(order.id)
     expect(page).to have_content 'Situação: Cancelado'
-
+    expect(StockProduct.count).to eq 0
   end
 
 

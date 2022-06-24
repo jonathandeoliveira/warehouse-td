@@ -81,7 +81,7 @@ RSpec.describe Order, type: :model do
                                 city:'Tatuapé', state:'SP', 
                                 email:'contato@tstark.com', phone_number:'6799672-3406')
       order = Order.new(user: user, warehouse: warehouse, 
-                        supplier: supplier, deadline_delivery:1.day.from_now)
+                        supplier: supplier, deadline_delivery:1.week.from_now)
       #act
       order.save!
       result = order.code
@@ -105,9 +105,9 @@ RSpec.describe Order, type: :model do
                                 city:'Tatuapé', state:'SP', 
                                 email:'contato@tstark.com', phone_number:'6799672-3406')
       order1 = Order.create!(user: user, warehouse: warehouse, 
-                        supplier: supplier, deadline_delivery:1.day.from_now)
+                        supplier: supplier, deadline_delivery:1.week.from_now)
       order2 = Order.new(user: user, warehouse: warehouse, 
-                          supplier: supplier, deadline_delivery:1.day.from_now)
+                          supplier: supplier, deadline_delivery:1.week.from_now)
       #act
       order2.save!
       #assert
@@ -116,6 +116,29 @@ RSpec.describe Order, type: :model do
     end
 
 
+    it 'e não deve ser modificado' do
+      #arrange
+      user = User.create!(name:'Jonathan', email:'jonathan@email.com' ,password:'password')
+
+      warehouse = Warehouse.create!(name: 'Palmas', code: 'TOC', city: 'Palmas', 
+                            area: 100_000, adress: 'endereço',
+                            zip_code: '12345-678', description:'Galpão')
+
+      supplier = Supplier.create!(company_name:'Stark Technology Inc', 
+                                 company_register:'00.178.762/0001-82',
+                                 brand_name:'Stark Industries', adress:'Rua Vilela, 663',
+                                city:'Tatuapé', state:'SP', 
+                                email:'contato@tstark.com', phone_number:'6799672-3406')
+
+      order = Order.create!(user: user, warehouse: warehouse, 
+                        supplier: supplier, deadline_delivery:1.week.from_now)
+      
+      original_code = order.code
+      #act
+      order.update!(deadline_delivery:1.month.from_now)
+      #assert
+      expect(order.code).to eq original_code
+    end
   end
 
 

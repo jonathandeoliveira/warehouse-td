@@ -2,32 +2,54 @@
 <h2> <%= @warehouse.description  %> </h2>
 
 <dl>
-
-  <dd> 
-  <strong>Código:</strong><%= @warehouse.code %><br/>
-  </dd>
-
-  <dd> 
-  <strong>Nome:</strong><%= @warehouse.name %><br/>
-  </dd>
-<dd> 
-  <strong>Cidade:</strong><%= @warehouse.city %><br/>
-  </dd>
-
-<dd> 
-  <strong>Área:</strong><%= @warehouse.area %> m²<br/>
-  </dd>
-
-<dd> 
-  <strong>Endereço:</strong><%= @warehouse.adress %> <strong> CEP:</strong><%= @warehouse.zip_code %> <br/>
-  </dd>
+  <dt><strong>Código:</strong></dt>
+  <dd><%= @warehouse.code %></dd>
+  <dt><strong>Nome:</strong></dt> 
+  <dd><%= @warehouse.name %></dd>
+  <dt><strong>Cidade:</strong></dt>
+  <dd><%= @warehouse.city %></dd>
+  <dt><strong>Área:</strong></dt>
+  <dd><%= @warehouse.area %> m²</dd>
+  <dt><strong>Endereço:</strong></dt>
+  <dd><%= @warehouse.adress %> <strong> CEP:</strong><%= @warehouse.zip_code %> </dd>
+</dl>
 <div>
 <%= link_to('Editar', edit_warehouse_path(@warehouse.id))%>
 <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete) %>
 </div>
 
+<section id="stock_products">
+<div>
+  <h2> Itens em estoque: </h2><br/>
+  <% @stocks.each_pair do |product, qtd| %>
+   <%= qtd %> x <%= product.name %>
+  <% end%>
+</div>
+</section>
+
+<section id="left_stock_products">
+<div>
+  <h2> Saída de Estoque: </h2><br/>
+  <%= form_with(url: warehouse_stock_product_destinations_path(@warehouse.id)) do |f| %>
+  <div>
+    <%= f.label :product_model_id, 'Item para Saída' %>
+    <%= f.collection_select(:product_model_id,@product_models, :id, :name) %>
+  </div> 
+
+  <div>
+    <%= f.label :recipient, 'Destinatário' %>
+    <%= f.text_field :recipient %>
+  </div> 
+
+  <div>
+    <%= f.label :adress, 'Endereço Destino' %>
+    <%= f.text_field :adress %>
+  </div> 
+  <%= f.submit 'Confirmar Retirada' %>
+  <% end %>
+</div>
+<section>
+
 <div>
 <%= link_to('Voltar', root_path)%> <br/>
 </div>
-
-</dl>
