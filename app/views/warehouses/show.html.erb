@@ -3,7 +3,7 @@
 
 <dl>
   <dt><strong>Código:</strong></dt>
-  <dd> <%= @warehouse.code %></dd>
+  <dd><%= @warehouse.code %></dd>
   <dt><strong>Nome:</strong></dt> 
   <dd><%= @warehouse.name %></dd>
   <dt><strong>Cidade:</strong></dt>
@@ -18,14 +18,37 @@
 <%= button_to('Remover', warehouse_path(@warehouse.id), method: :delete) %>
 </div>
 
-
+<section id="stock_products">
 <div>
   <h2> Itens em estoque: </h2><br/>
   <% @stocks.each_pair do |product, qtd| %>
    <%= qtd %> x <%= product.name %>
   <% end%>
 </div>
+</section>
 
+<section id="left_stock_products">
+<div>
+  <h2> Saída de Estoque: </h2><br/>
+  <%= form_with(url: warehouse_stock_product_destinations_path(@warehouse.id)) do |f| %>
+  <div>
+    <%= f.label :product_model_id, 'Item para Saída' %>
+    <%= f.collection_select(:product_model_id,@product_models, :id, :name) %>
+  </div> 
+
+  <div>
+    <%= f.label :recipient, 'Destinatário' %>
+    <%= f.text_field :recipient %>
+  </div> 
+
+  <div>
+    <%= f.label :adress, 'Endereço Destino' %>
+    <%= f.text_field :adress %>
+  </div> 
+  <%= f.submit 'Confirmar Retirada' %>
+  <% end %>
+</div>
+<section>
 
 <div>
 <%= link_to('Voltar', root_path)%> <br/>

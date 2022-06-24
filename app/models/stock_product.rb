@@ -2,12 +2,14 @@ class StockProduct < ApplicationRecord
   belongs_to :warehouse
   belongs_to :order
   belongs_to :product_model
-
-
-
+  has_one :stock_product_destination
 
   before_validation :generate_serial_number, on: :create
 
+  def availabe?
+    stock_product_destination.nil?
+  end
+  
   private
 
   def generate_serial_number

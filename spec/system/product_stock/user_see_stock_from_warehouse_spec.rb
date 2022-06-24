@@ -26,17 +26,19 @@ describe 'Usuário vê o estoque' do
 
     order = Order.create!(user: user, warehouse: warehouse, supplier: supplier, deadline_delivery:1.month.from_now, status: 'pending')
 
-    7.times{ StockProduct.create!(order:order,warehouse:warehouse,product_model:product_a) }
-    3.times{ StockProduct.create!(order:order,warehouse:warehouse,product_model:product_b) }
+    3.times{ StockProduct.create!(order:order,warehouse:warehouse,product_model:product_a) }
+    2.times{ StockProduct.create!(order:order,warehouse:warehouse,product_model:product_b) }
     #act
     login_as(user)
     visit root_path
     click_on 'Zona Leste'
     #assert
-    expect(page).to have_content 'Itens em estoque'
-    expect(page).to have_content '7 x Ark Reactor'
-    expect(page).to have_content '3 x Armor MKLXXXV'
-    expect(page).not_to have_content 'JARVIS'
+    within("section#stock_products") do
+      expect(page).to have_content 'Itens em estoque'
+      expect(page).to have_content '3 x Ark Reactor'
+      expect(page).to have_content '2 x Armor MKLXXXV'
+      expect(page).not_to have_content 'JARVIS'
+    end
   end
 
   it 'e dá baixa em um item' do
@@ -64,14 +66,14 @@ describe 'Usuário vê o estoque' do
     login_as(user)
     visit root_path
     click_on 'Zona Leste'
-    select 'R34T0R-4RK', from: 'Item para Saída'
+    select 'Ark Reactor', from: 'Item para Saída'
     fill_in 'Destinatário', with: 'Maria Ferreira'
     fill_in 'Endereço Destino', with: 'Rua das Palmeiras, 100 - Campinas - SP'
     click_on 'Confirmar Retirada'
     #assert
     expect(current_path).to eq warehouse_path(warehouse.id)
     expect(page).to have_content 'Item retirado com sucesso'
-    expect(page).to have_content '6 x R34T0R-4RK'
+    expect(page).to have_content '6 x Ark Reactor'
   end
 
 
